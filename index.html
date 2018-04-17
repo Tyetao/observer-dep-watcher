@@ -1,0 +1,28 @@
+<script type="module">
+  import Observer from './Observer.js'
+  import Watcher from './Watcher.js'
+
+  let data = {
+    name: '谭业涛',
+    age: {
+      age1: 2
+    }
+  }
+
+  let ob = new Observer({
+    data: data
+  })
+
+  // 监听name属性，当name属性发生改变是触发setter执行回调
+  new Watcher(data, 'name', () => {
+    console.log('name发生了改变')
+  })
+
+  new Watcher(data, 'age', () => {
+    console.log('age发生了改变')
+  })
+
+  setTimeout(() => {
+    ob._data.age = 1
+  }, 2000)
+</script>
